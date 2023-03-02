@@ -4,6 +4,8 @@
 int main()
 {
 	int fd;
+	char *s;
 	fd = open("test.txt",O_RDONLY);
-	get_next_line(fd);
+	s = get_next_line(fd);
+	printf("%s",s);
 }
