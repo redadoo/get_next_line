@@ -34,21 +34,20 @@ char *get_next_line(int fd)
 		free(line);
 		return (NULL);
 	}
-	return(line)
+	return(line);
 }
-
 
 void	read_and_stash(int fd, t_list **stash,int *readed)
 {
 	char *buf;
 
-	while (!found_newline(stash) && readed != 0)
+	while (!found_newline(*stash) && readed != 0)
 	{
-		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1))
+		buf = malloc(sizeof(char) * (BUFFER_SIZE + 1));
 		if (!buf)
 			return ;
-		readed = (int)read(fd,buf,BUFFER_SIZE):
-		if((*stash == NULL && *readed == 0) || readed == -1)
+		*readed = (int)read(fd, buf, BUFFER_SIZE);
+		if((*stash == NULL && *readed == 0) || *readed == -1)
 		{
 			free(buf);
 			return ;
@@ -98,7 +97,7 @@ void extract_line(t_list *stash,char **line)
 	generate_line(line,stash);
 	if(*line == NULL)
 		return ;
-	J = 0;
+	j = 0;
 	while (stash)
 	{
 		while (stash->content[i])
@@ -137,6 +136,6 @@ void clean_stash(t_list **stash)
 	while (last->content[i])
 		clean_node->content[j++] = last->content[i++];
 	clean_node->content[j] = '\0';
-	free_stash(*stash)
+	free_stash(*stash);
 	*stash = clean_node;
 }

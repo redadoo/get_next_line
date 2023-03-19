@@ -32,6 +32,7 @@ void add_stash(t_list **stash,char *buf,int readed);
 void extract_line(t_list *stash,char **line);
 void generate_line(char **line,t_list *stash);
 void free_stash(t_list *stash);
+void clean_stash(t_list **stash);
 
 #endif
 

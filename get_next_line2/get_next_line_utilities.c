@@ -37,7 +37,8 @@ t_list *get_last_node(t_list *stash)
 	current = stash;
 
 	while (current && current->next)
-		current = current->next
+		current = current->next;
+
 	return (current);
 }
 
@@ -62,7 +63,7 @@ void generate_line(char **line,t_list *stash)
 		}
 		stash = stash->next;
 	}
-	*line = malloc(sizeof(char) * (len + 1))
+	*line = malloc(sizeof(char) * (len + 1));
 	if(*line == NULL)
 		return ;
 }
