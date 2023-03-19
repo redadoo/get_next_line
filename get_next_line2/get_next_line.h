@@ -29,7 +29,7 @@ void	read_and_stash(int fd, t_list **stash,int *readed);
 t_list *get_last_node(t_list *stash);
 int found_newline(t_list *stash);
 void add_stash(t_list **stash,char *buf,int readed);
-void extract_line(t_list stash,char **line);
+void extract_line(t_list *stash,char **line);
 void generate_line(char **line,t_list *stash);
 void free_stash(t_list *stash);
 

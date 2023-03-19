@@ -21,7 +21,7 @@ char *get_next_line(int fd)
 	if(fd < 0 || BUFFER_SIZE < 0 || read(fd,&line,0) < 0)
 		return (NULL);
 	readed = 1;
-	LINE = NULL;
+	line = NULL;
 	read_and_stash(fd,&stash,&readed);
 	if(stash == NULL)
 		return (NULL);
@@ -115,7 +115,7 @@ void extract_line(t_list *stash,char **line)
 	}
 	(*line)[j] = '\0'; 
 }
-void clean_stash(t_list *stash)
+void clean_stash(t_list **stash)
 {
 	t_list *last;
 	t_list *clean_node;
