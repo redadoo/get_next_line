@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: evocatur <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: evocatur <evocatur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/19 12:25:29 by evocatur          #+#    #+#             */
-/*   Updated: 2023/03/19 12:25:29 by evocatur         ###   ########.fr       */
+/*   Created: 2023/03/02 09:43:34 by evocatur          #+#    #+#             */
+/*   Updated: 2023/03/10 11:11:20 by evocatur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,18 @@
 # define GET_NEXT_LINE_H
 
 # include <unistd.h>
+# include <fcntl.h>
 # include <stdio.h> 
 # include <stdlib.h>
 # include <string.h>
+# include <stdbool.h>
 
-typedef struct s_list
-{
-    char *content;
-    struct s_list *next;
-}              t_list;
-
-char *get_next_line(int fd);
-void	read_and_stash(int fd, t_list **stash,int *readed);
-t_list *get_last_node(t_list *stash);
-int found_newline(t_list *stash);
-void add_stash(t_list **stash,char *buf,int readed);
-void extract_line(t_list *stash,char **line);
-void generate_line(char **line,t_list *stash);
-void free_stash(t_list *stash);
-void clean_stash(t_list **stash);
+char	*get_next_line(int fd);
+char	*ft_statstr(int fd, char *statstr);
+size_t	ft_strlen(const char *str);
+char	*ft_strjoin(char *backup, char *buff);
+char	*ft_strchr(const char *str, int ch);
+char	*ft_backup(char *backup);
+char	*ft_get_line(char *backup);
 
 #endif
-

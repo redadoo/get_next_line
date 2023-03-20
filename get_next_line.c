@@ -6,24 +6,47 @@
 /*   By: evocatur <evocatur@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/02 09:17:29 by evocatur          #+#    #+#             */
-/*   Updated: 2023/03/02 12:44:41 by evocatur         ###   ########.fr       */
+/*   Updated: 2023/03/16 13:54:14 by evocatur         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "get_next_line.h"
 
-char *get_next_line(int fd)
+char	*ft_statstr(int fd, char *statstr)
 {
-	if (!filedes && fd)
+	char	*str;
+	int		bytes;
+
+	str = (char *)malloc(BUFFER_SIZE + 1);
+	if (!str)
+		return (NULL);
+	bytes = 1;
+	while (!ft_strchr(statstr, '\n') && bytes != 0)
 	{
-		filedes = fd;
-		return(readline(fd));
+		bytes = read(fd, str, BUFFER_SIZE);
+		if (bytes == -1)
+		{
+			free(str);
+			return (NULL);
+		}
+		str[bytes] = '\0';
+		statstr = ft_strjoin(statstr, str);
 	}
-	else if (fd)
-	{
-		return(readline(filedes));
-	}
-	return(NULL);
+	free(str);
+	return (statstr);
 }
 
+char	*get_next_line(int fd)
+{
+	char		*str;
+	static char	*statstr;
+
+	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	statstr = ft_statstr(fd, statstr);
+	if (!statstr)
+		return (NULL);
+	str = ft_get_line(statstr);
+	statstr = ft_backup(statstr);
+	return (str);
+}
